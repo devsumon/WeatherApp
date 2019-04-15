@@ -25,14 +25,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.viewHolder> {
 
     @NonNull
     @Override
-    public viewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(c).inflate(R.layout.list_item, viewGroup, false);
-        View v2 = LayoutInflater.from(c).inflate(R.layout.list_item_2, viewGroup, false);
-        if(i==0){
-            return new viewHolder(v2);
+    public viewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View v;
+        if(viewType==0){
+            v = LayoutInflater.from(c).inflate(R.layout.list_item, viewGroup, false);
         } else{
-            return new viewHolder(v);
+            v = LayoutInflater.from(c).inflate(R.layout.list_item_2, viewGroup, false);
         }
+        return new viewHolder(v);
 
     }
 
@@ -70,6 +70,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.viewHolder> {
         viewHolder.minTempView.setText(Integer.toString((int)minTemp)+"°");
 
 
+    }
+    public int getItemViewType(int position){
+        if(position == 0){
+            return 0;
+        } else{
+            return 1;
+        }
     }
 
     @Override
